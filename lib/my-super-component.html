@@ -1,0 +1,34 @@
+<script type="application/json" doc>
+  {
+    "name": "My super component",
+    "description": "It gives you super power"
+  }
+</script>
+
+<style>
+  :host {
+    border: red;
+  }
+</style>
+
+<template>
+  <div>
+    My cool content is here:
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+  // What if we support typescript here???
+
+  customElements.define(
+    "my-super-component",
+    class extends HTMLElement {
+      constructor() {
+        super();
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.innerHTML = this.innerHTML;
+      }
+    }
+  );
+</script>
